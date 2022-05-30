@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}">
+    <meta charset="UTF-8">
+    <title>Author</title>
+</head>
+<body class="main-body">
+<nav th:replace="~{main-layout :: navigator}"></nav>
+<header th:replace="~{main-layout :: header}"></header>
+<main>
+    <form th:action="@{/category/upsert}" th:object="${category}" method="POST" class="upsert-form alternate-action ">
+        <table th:attr="data-action=${type}">
+            <tbody>
+            <tr>
+                <td><label>Category Name*</label></td>
+                <td>
+                    <input type="text" th:field="*{categoryName}" name="categoryName" class="readonly-id">
+                </td>
+            </tr>
+            <tr>
+                <td><label>Floor*</label></td>
+                <td>
+                    <input type="text" th:field="*{floor}" name="floor">
+                </td>
+            </tr> <tr>
+                <td><label>Isle*</label></td>
+                <td>
+                    <input type="text" th:field="*{isle}" name="isle">
+                </td>
+            </tr>
+            <tr>
+                <td><label>Bay*</label></td>
+                <td>
+                    <input type="text" th:field="*{bay}" name="bay">
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <button type="submit" class="blue-button">save</button>
+    </form>
+</main>
+<footer th:replace="~{main-layout :: footer}"></footer>
+<th:block th:replace="~{main-layout :: javascript}"></th:block>
+</body>
+</html>

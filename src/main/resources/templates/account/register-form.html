@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}"></head>
+<body class="authentication-body">
+
+<div class="authentication-wrapper">
+    <header class="company-logo">
+        <img alt="Basilisk" th:src="@{/resources/image/logo.png}">
+        <h1>Learn in<span class="bold"> IGLO UNIVERSITY</span></h1>
+    </header>
+
+    <main>
+        <form method="post" th:action="@{/account/register}" th:object="${account}">
+                <label>Username*</label>
+                <input class="form-control" id="username" name="username" placeholder="Username" th:field="*{username}"
+                       type="text" autocomplete="off">
+                 <div class="field-validation-error" th:errors="*{username}" >ssss</div>
+
+                <label >Password*</label>
+                <input class="form-control" id="password" name="password" placeholder="Password" th:field="*{password}"
+                       type="password" autocomplete="off">
+                 <div class="field-validation-error" th:errors="*{password}" >ssss</div>
+
+                <button class="btn btn-primary btn-block" type="submit">Register</button>
+        </form>
+
+    </main>
+
+</div>
+
+<!--<th:block th:replace="~{main-layout :: javascript}"></th:block>-->
+</body>
+</html>

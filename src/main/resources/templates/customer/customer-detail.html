@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}"></head>
+<body  class="main-body">
+    <nav th:replace="~{main-layout :: navigator}"></nav>
+    <header th:replace="~{main-layout :: header}"></header>
+    <main>
+        <div class="upsert-form" th:object="${customerDetail}">
+            <table>
+                <thead>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </thead>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td><label>Membership Number</label></td>
+                                <td th:text="|: ${customerDetail.id}|"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Full Name</label></td>
+                                <td th:text="|: ${customerDetail.fullName}|"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Birth Date</label></td>
+                                <td th:text="|: ${customerDetail.birthDate}|"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Gender</label></td>
+                                <td th:text="|: ${customerDetail.gender}|"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Phone</label></td>
+                                <td th:text="|: ${customerDetail.phone}|"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Address</label></td>
+                                <td th:text="|: ${customerDetail.address}|"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <a th:href="@{/customer/index}" class="blue-button create-button">Back to Customer</a>
+        </div>
+    </main>
+</body>
+</html>

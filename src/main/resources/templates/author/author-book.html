@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="main-body">
+    <nav th:replace="~{main-layout :: navigator}"></nav>
+    <header th:replace="~{main-layout :: header}"></header>
+    <main>
+        <div class="grid-container">
+            <a th:href="@{/author/index}" class="blue-button create-button">Back to Author Index</a>
+
+            <table th:each="(aut : ${author})" class="">
+                <tbody>
+                    <tr>
+                        <th>Name:   </th>
+                        <td th:text="|${aut.title} ${aut.firstName} ${aut.lastName}|"></td>
+                    </tr>
+                    <tr>
+                        <th>Birth Date:   </th>
+                        <td th:text="${aut.birthDate}"></td>
+                    </tr>
+                    <tr>
+                        <th>Decease Date:   </th>
+                        <td th:text="${aut.deceasedDate}"></td>
+                    </tr>
+                    <tr>
+                        <th>Education:   </th>
+                        <td th:text="${aut.education}"></td>
+                    </tr>
+                    <tr>
+                        <th>Summary:   </th>
+                        <td th:text="${aut.summary}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="grid-container">
+            <table>
+                <tbody >
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Category Name</th>
+                        <th>Is Borrowed</th>
+                        <th>Release Date</th>
+                        <th>Total Page</th>
+                    </tr>
+                    <tr th:each="books : ${book}">
+                        <td th:text="${books.title}"></td>
+                        <td th:text="${books.categoryName}"></td>
+                        <td th:text="${books.isBorrowed}"></td>
+                        <td th:text="${books.releaseDate}"></td>
+                        <td th:text="${books.totalPage}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

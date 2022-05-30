@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}">
+    <meta charset="UTF-8">
+    <title>Author</title>
+</head>
+<body class="main-body">
+    <nav th:replace="~{main-layout :: navigator}"></nav>
+    <header th:replace="~{main-layout :: header}"></header>
+    <main>
+        <div class="grid-container">
+            <form th:action="@{/customer/upsert}" th:object="${customer}" method="post" class="upsert-form alternate-action">
+                <table th:attr="data-action=${type}">
+                    <tbody>
+                    <tr>
+                        <td><label>Customer ID*</label></td>
+                        <td>
+                            <input th:field="*{id}" type="text" class="readonly-id">
+                            <div class="field-validation-error" th:errors="*{id}"></div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>First Name*</label></td>
+                        <td>
+                            <input type="text" th:field="*{firstName}" name="firstName">
+                            <div class="field-validation-error" th:errors="*{firstName}"></div>
+
+                        </td>
+                    </tr> <tr>
+                        <td><label>Last Name*</label></td>
+                        <td>
+                            <input type="text" th:field="*{lastName}" name="lastName">
+                            <div class="field-validation-error" th:errors="*{lastName}"></div>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><label>Date of Birth*</label></td>
+                        <td>
+                            <input type="date" th:field="*{birthDate}" name="birthDate">
+                            <div class="field-validation-error" th:errors="*{birthDate}"></div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Gender</label></td>
+                        <td>
+                            <input type="radio"  name="male"  value="male" th:field="*{gender}">
+                            <label >Male</label>
+                            <input type="radio"  name="female" value="female" th:field="*{gender}" >
+                            <label >Female</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Phone Number</label></td>
+                        <td>
+                            <input type="text" th:field="*{phone}" name="phone">
+                            <div class="field-validation-error" th:errors="*{phone}"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Summary</label></td>
+                        <td>
+                            <textarea th:field="*{address}" name="address"></textarea>
+                            <div class="field-validation-error" th:errors="*{address}"></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="blue-button create-button">save</button>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="~{main-layout :: footer}"></footer>
+    <th:block th:replace="~{main-layout :: javascript}"></th:block>
+</body>
+
+</html>

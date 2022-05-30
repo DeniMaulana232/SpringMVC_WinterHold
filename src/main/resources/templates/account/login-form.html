@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}"></head>
+<body class="authentication-body">
+<div class="authentication-wrapper">
+
+    <header th:replace="~{login-layout :: header}"></header>
+
+    <main>
+        <form th:action="@{/authenticating}" method="POST">
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
+            <input type="text" name="username" placeholder="username..">
+            <input type="password" name="password"
+                   placeholder="password..">
+            <button type="submit">Sign In</button>
+        </form>
+        <a th:href="@{account/register-form}">Create Your Account →</a>
+    </main>
+</div>
+</body>
+</html>

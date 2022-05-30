@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="main-body">
+    <nav th:replace="~{main-layout :: navigator}"></nav>
+    <header th:replace="~{main-layout :: header}"></header>
+    <main>
+        <div class="grid-container">
+            <form method="get" class="filter" th:action="@{/loan/index(name = ${name})}">
+                <input type="text" name="name" th:value="${name}" placeholder="Customer Name.......">
+                <input type="text" name="title" th:value="${title}" placeholder="Book Title.......">
+                <button type="submit" class="blue-button">Search</button>
+            </form>
+            <a th:href="@{/loan/upsert-form}" class="blue-button create-button">New Loan</a>
+            <div class="field-validation-error" th:text="${error}" th:if="${error}"></div>
+            <div class="field-validation-success" th:text="${success}" th:if="${success}"></div>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Action</th>
+                        <th>Book Title</th>
+                        <th>Customer Name</th>
+                        <th>Loan Date</th>
+                        <th>Due Date</th>
+                        <th>Return Date</th>
+                    </tr>
+                    <tr th:each="loans : ${loan}">
+                        <td>
+                            <a th:href="@{/loan/detail(id = ${loans.id})}" class="blue-button">Detail</a>
+                            <a th:href="@{/loan/upsert-form(id = ${loans.id})}" class="blue-button">Edit</a>
+                            <a th:href="@{/loan/return(id = ${loans.id})}" class="blue-button">Return</a>
+                        </td>
+                        <td th:text="${loans.bookCode}"></td>
+                        <td th:text="${loans.customerNumber}"></td>
+                        <td th:text="${loans.loanDate}"></td>
+                        <td th:text="${loans.dueDate}"></td>
+                        <td th:text="${loans.returnDate}"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="pagination">
+                            <div th:text="|Page ${page} of ${totalPage}|"></div>
+                            <div>
+                                <a th:each="pageLoop : ${#numbers.sequence(1, (totalPage < 1) ? 1 : totalPage)}"
+                                   th:href="@{/loan/index(page=${pageLoop},id=${id},name=${name})}"
+                                   th:text="${pageLoop}">
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </main>
+    <footer th:replace="~{main-layout :: footer}"></footer>
+    <th:block th:replace="~{main-layout :: javascript}"></th:block>
+</body>
+</html>

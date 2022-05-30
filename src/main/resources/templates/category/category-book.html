@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="main-body">
+    <nav th:replace="~{main-layout :: navigator}"></nav>
+    <header th:replace="~{main-layout :: header}"></header>
+    <main>
+        <div class="grid-container">
+            <a th:href="@{/category/index}" class="blue-button create-button">Back to Category Index</a>
+
+            <form method="get" class="filter" th:action="@{/category/books(categoryName = ${categoryName})}">
+                <input type="text" name="title" th:value="${title}" placeholder="title.......">
+                <input type="hidden" readonly name="categoryName" placeholder="title.." th:value="${categoryName}">
+                <button type="submit" class="blue-button">Search</button>
+            </form>
+
+            <form method="get" class="filter" th:action="@{/category/books(categoryName = ${categoryName})}">
+                <input type="text" name="id" th:value="${id}" placeholder="Author.......">
+                <input type="hidden" readonly name="categoryName" placeholder="title.." th:value="${categoryName}">
+                <button type="submit" class="blue-button">Search</button>
+            </form>
+        </div>
+
+            <table >
+                <tbody>
+                <tr th:each="(cat : ${category})">
+                    <h3 class="create-button">List Of <span class="bold" th:text="${cat.categoryName}"></span></h3>
+                </tr>
+
+                </tbody>
+            </table>
+            <div th:each="(c : ${category})">
+                <a th:href="@{/category/book-upsert-form(categoryName = ${c.categoryName})}" class="blue-button create-button">Add New Science <span ></span> Book</a>
+            </div>
+
+        <div class="grid-container">
+            <table>
+                <tbody >
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Is Borrowed</th>
+                        <th>Release Date</th>
+                        <th>Total Page</th>
+                    </tr>
+                    <tr th:each="(book : ${books})">
+                        <td th:text="${book.title}"></td>
+                        <td th:text="${book.id}"></td>
+                        <td th:text="${book.isBorrowed}"></td>
+                        <td th:text="${book.releaseDate}"></td>
+                        <td th:text="${book.totalPage}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

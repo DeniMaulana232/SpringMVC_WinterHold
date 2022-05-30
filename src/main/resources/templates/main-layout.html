@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Iglo University</title>
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <!--css-->
+    <link rel="stylesheet" th:href="@{/resources/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/site.css}">
+</head>
+
+<body>
+<nav th:fragment="navigator">
+    <div class="company-logo">
+        <img th:src="@{/resources/image/logo.png}" alt="Basilisk">
+        <h1>
+            Learn in<span class="bold">IGLO UNIVERSITY</span>
+        </h1>
+    </div>
+
+    <a class="menu category" th:href="@{/author/home}">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a class="menu supplier" th:href="@{/author/index}">
+        <i class="fa fa-user"></i>
+        <span>Author</span>
+    </a>
+    <a class="menu category" th:href="@{/category/index}">
+        <i class="fas fa-book"></i>
+        <span>Books</span>
+    </a>
+    <a class="menu product" th:href="@{/customer/index}">
+        <i class="fas fa-users"></i>
+        <span>Customer</span>
+    </a>
+    <a class="menu region" th:href="@{/loan/index}">
+        <i class="far fa-credit-card"></i>
+        <span>Loan</span>
+    </a>
+</nav>
+<header th:fragment="header">
+    <div class="bread-crumbs">
+        <span th:text="${breadCrumbs}"></span>
+    </div>
+
+    <div class="user-wrapper">
+        <div class="user">
+            <span class="full-name" sec:authentication="name">anonymous</span>
+            <span class="role" sec:authentication="principal.authorities">guest</span>
+        </div>
+        <div class="sign-out">
+            <form th:action="@{/logout}" method="POST">
+                <button type="submit"><i class="fas fa-sign-out-alt"></i></button>
+            </form>
+        </div>
+    </div>
+
+</header>
+<footer th:fragment="footer">
+    Copyrights &copy; 2022
+    <span class="author">Deni Maulana</span>
+    All rights reserved.
+</footer>
+
+<th:block th:fragment="javascript">
+    <script th:src="@{/resources/js/site.js}"></script>
+<!--    <script th:src="@{/resources/js/alert.js}"></script>-->
+</th:block>
+</body>
+</html>

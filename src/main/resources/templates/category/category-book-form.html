@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="main-body">
+    <nav th:replace="~{main-layout :: navigator}"></nav>
+    <header th:replace="~{main-layout :: header}"></header>
+    <main>
+        <div class="grid-container">
+            <form th:action="@{/category/book-upsert}" method="post" th:object="${categoryBook}">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Code* </td>
+                            <td>
+                                <input th:field="*{id}" type="text" placeholder="book code......">
+                                <div class="field-validation-error" th:errors="*{id}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Title* </td>
+                            <td>
+                                <input th:field="*{title}" type="text" placeholder="title......">
+                                <div class="field-validation-error" th:errors="*{title}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Category Name</td>
+                            <td>
+                                <input type="text" readonly th:field="*{categoryName}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Author*</label></td>
+                            <td>
+                                <select th:field="*{authorId}">
+                                    <option th:value=null>No Specific Author</option>
+                                    <option th:each="option : ${dropdownAuthor}"
+                                            th:selected="${option.id == authorId}"
+                                            th:text="${option.fullName}"
+                                            th:value="${option.id}"/>
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Release Date* </td>
+                            <td>
+                                <input th:field="*{releaseDate}" type="date">
+                                <div class="field-validation-error" th:errors="*{releaseDate}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total Page* </td>
+                            <td>
+                                <input th:field="*{totalPage}" type="number" placeholder="Total Page......">
+                                <div class="field-validation-error" th:errors="*{totalPage}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Summary</td>
+                            <td>
+                                <textarea th:field="*{summary}" cols="30" rows="10"></textarea>
+                                <div class="field-validation-error" th:errors="*{summary}"></div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="blue-button create-button" type="submit">Save</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

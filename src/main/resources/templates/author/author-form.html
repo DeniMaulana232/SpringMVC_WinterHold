@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{main-layout :: head}">
+    <meta charset="UTF-8">
+    <title>Author</title>
+</head>
+<body class="main-body">
+    <nav th:replace="~{main-layout :: navigator}"></nav>
+    <header th:replace="~{main-layout :: header}"></header>
+    <main>
+        <form th:action="@{/author/upsert}" th:object="${author}" method="POST" class="upsert-form">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label>Author ID*</label></td>
+                        <td>
+                            <input th:field="*{id}" type="hidden" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Title*</label></td>
+                        <td>
+                            <input type="text" th:field="*{title}" name="title">
+                        </td>
+                    </tr> <tr>
+                        <td><label>First Name*</label></td>
+                        <td>
+                            <input type="text" th:field="*{firstName}" name="firstName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Last Name*</label></td>
+                        <td>
+                            <input type="text" th:field="*{lastName}" name="lastName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Date of Birth*</label></td>
+                        <td>
+                            <input type="date" th:field="*{birthDate}" name="birthDate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Date of Death</label></td>
+                        <td>
+                            <input type="date" th:field="*{deceasedDate}" name="deceasedDate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Education</label></td>
+                        <td>
+                            <input type="text" th:field="*{education}" name="education">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Summary</label></td>
+                        <td>
+                            <input type="text" th:field="*{summary}" name="summary">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="blue-button">save</button>
+        </form>
+    </main>
+    <footer th:replace="~{main-layout :: footer}"></footer>
+    <th:block th:replace="~{main-layout :: javascript}"></th:block>
+</body>
+</html>
